@@ -100,7 +100,7 @@
         <section class="jumbotron text-center">
             <img src="img/pribadi-.jpg" alt="Faujan Nursalam" width="200" class = "rounded-circle img-thumbnail " >
             <h1 class="display-4">Faujan Nursalam</h1>
-            <p class="lead">Frontend Web developer</p>
+            <p class="lead">Frontend Web developer Enthussiast</p>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#ffffff" fill-opacity="1" d="M0,128L34.3,149.3C68.6,171,137,213,206,213.3C274.3,213,343,171,411,154.7C480,139,549,149,617,133.3C685.7,117,754,75,823,80C891.4,85,960,139,1029,160C1097.1,181,1166,171,1234,149.3C1302.9,128,1371,96,1406,80L1440,64L1440,320L1405.7,320C1371.4,320,1303,320,1234,320C1165.7,320,1097,320,1029,320C960,320,891,320,823,320C754.3,320,686,320,617,320C548.6,320,480,320,411,320C342.9,320,274,320,206,320C137.1,320,69,320,34,320L0,320Z"></path></svg>
           </section>
 
@@ -158,7 +158,7 @@
                         <div class="card" style="width: 18rem;">
                             <img src="img/4.jpg" class="card-img-top" alt="faujan nursalam">
                             <div class="card-body">
-                              <p class="card-text">create/design a mobile shopping website using figma final project from Cakap.</p>
+                              <p class="card-text">create/design a mobile shopping website using the figma tool, final project from Cakap.</p>
                             </div>
                           </div>
                     </div>
@@ -166,7 +166,7 @@
                         <div class="card" style="width: 18rem;">
                             <img src="img/5.jpg" class="card-img-top" alt="faujan nursalam">
                             <div class="card-body">
-                              <p class="card-text">Creating/Designing use figma a Movie website is a task from Dibimbing id.</p>
+                              <p class="card-text">Creating/Designing use tool figma a Movie website is a task from Dibimbing id.</p>
                             </div>
                           </div>
                     </div>
@@ -196,21 +196,29 @@
 				</div>
 			</div>
 			<div class="row justify-content-center">
-				<div class="col-md-8">
-					<form>
+				<div class="col-md-8">	
+					<div class="alert alert-success alert-dismissible fade show d-none my-alert" role="alert">
+						<strong>Thank You!</strong> We have received our message.
+						<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+					  </div>			
+				<form name="submit-to-google-sheet">
 						<div class="mb-3">
-						  <label for="Name" class="form-label">Nama Lengkap</label>
-						  <input type="text" class="form-control" id="Name" aria-describedby="Name">
+						  <label for="name" class="form-label">Nama Lengkap</label>
+						  <input type="text" class="form-control" id="name" aria-describedby="name" name="nama">
 						</div>	
 						<div class="mb-3">
-						  <label for="Email" class="form-label">Email</label>
-						  <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="email">
+						  <label for="email" class="form-label">Email</label>
+						  <input type="email" class="form-control" id="email" aria-describedby="email" name="email">
 						</div>	
 						  <div class="mb-3">
-							<label for="Pesan" class="form-label">Pesan</label>
-							<textarea class="form-control" id="Pesan" rows="3"></textarea>
+							<label for="pesan" class="form-label">Pesan</label>
+							<textarea class="form-control" id="Pesan" rows="3" name="pesan"></textarea>
 						  </div>						  						
-						<button type="submit" class="btn btn-success">kirim</button>
+						<button type="submit" class="btn btn-success btn-kirim">kirim</button>
+						<button class="btn btn-success btn-loading d-none" type="button" disabled>
+							<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+							Loading...
+						  </button>
 					  </form>	
 				</div>	
 			</div>
@@ -230,6 +238,35 @@
 		<script
 			src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
 			integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-			crossorigin="anonymous"></script>
+			crossorigin="anonymous">
+			</script>
+			<script>
+				const scriptURL = 'https://script.google.com/macros/s/AKfycbwNHCmmmSfgMHognFeBmiWySutpUZQV6AdXgeJPfp11xqqfN8CDBq7Qz5fX7IJAS7XkAA/exec'
+				const form = document.forms['submit-to-google-sheet'];
+				const btnKirim = document.querySelector('.btn-kirim');
+				const btnLoading = document.querySelector('.btn-loading');
+				const myAlert = document.querySelector ('.my-alert');
+
+				form.addEventListener('submit', (e) => {
+				e.preventDefault();
+				// ketika tombol submit diklik
+				// tampilkan tombol loading,hilangkan tombol kirim
+				btnLoading.classList.toggle('d-none');	  
+				btnKirim.classList.toggle('d-none');	  
+				
+				  fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+					.then((response) => {
+						// tampilkan tombol kirim,hilangkan tombol loading			
+					btnLoading.classList.toggle('d-none');	  
+				btnKirim.classList.toggle('d-none');
+					//tampilkan alert
+				myAlert.classList.toggle('d-none');
+						//reset formnya
+				form.reset();
+				console.log('Success!', 'response');	
+				})
+					.catch((error) => console.error('Error!', error.message));
+				});
+			  </script>
 	</body>
 </html>
