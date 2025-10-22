@@ -15,3 +15,140 @@ section {
 #gallery .row > * {
 	padding: 0;
 }
+/* my card */
+
+/* 1. Menghilangkan Dekorasi Link pada Card */
+.card-link {
+	text-decoration: none; /* Menghilangkan garis bawah pada link */
+	color: inherit; /* Memastikan warna teks tetap sama */
+	display: block; /* Agar link menempati seluruh area col-md-4 */
+	height: 100%; /* Agar link membungkus seluruh tinggi kolom */
+}
+
+/* 2. Menyamakan Ukuran Card */
+.card {
+	/* Menentukan tinggi minimum agar semua kartu terlihat konsisten, sesuaikan nilai ini */
+	min-height: 300px;
+
+	/* Transisi untuk efek zoom/hover yang halus */
+	transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+
+	/* Menggunakan flexbox untuk mengatur tinggi card-body */
+	display: flex;
+	flex-direction: column;
+}
+
+/* Memastikan semua gambar memiliki tinggi yang sama */
+.card-img-top {
+	/* Tinggi gambar yang seragam, sesuaikan nilai ini jika perlu */
+	height: 200px;
+	/* Memastikan gambar mengisi area tanpa terdistorsi */
+	object-fit: cover;
+}
+
+/* Memastikan card-body menempati sisa ruang */
+.card-body {
+	flex-grow: 1; /* Memastikan card-body mengisi sisa ruang vertikal */
+	display: flex;
+	align-items: center; /* Teks di tengah vertikal */
+	justify-content: center; /* Teks di tengah horizontal (sudah ada class text-center) */
+}
+
+/* 3. Efek Zoom saat di-hover */
+.card:hover {
+	/* Memperbesar ukuran card sebesar 5% (1.05 kali) */
+	transform: scale(1.05);
+	/* Menambahkan bayangan untuk efek visual yang lebih menonjol */
+	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+	/* Menarik card ke lapisan atas agar tidak terpotong (penting jika ada elemen di sebelahnya) */
+	z-index: 10;
+}
+
+/* my keyboard section */
+
+.keyboard-box {
+	position: relative;
+	background-color: white;
+	border-radius: 10px;
+	height: 500px;
+	transform-style: preserve-3d;
+}
+
+.keyboard-box::before {
+	content: "MY";
+	position: absolute;
+	color: #ffff;
+	font-size: 6em;
+	font-weight: bold;
+	font-style: italic;
+	top: 30px;
+	left: 50%;
+	transform: translate(-50%, 0);
+	opacity: 0;
+	transition: 0.5s;
+}
+.keyboard-box:hover::before {
+	opacity: 0.2;
+}
+.keyboard-box::after {
+	content: "Skill";
+	position: absolute;
+	color: #ffff;
+	font-size: 4.3em;
+	font-weight: bold;
+	font-style: italic;
+	top: 350px;
+	left: 50%;
+	transform: translate(-50%, 0);
+	opacity: 0;
+	transition: 0.5s;
+}
+.keyboard-box:hover::after {
+	opacity: 0.2;
+}
+
+.keyboard-name {
+	position: absolute;
+	top: 0;
+	width: 100%;
+	color: #fff;
+	text-align: center;
+	font-size: 2em;
+	opacity: 0;
+	transform: translate3d(0, 0, 50px);
+	transition: 0.5s;
+}
+
+.keyboard-box:hover .keyboard-name {
+	top: 20px;
+	opacity: 1;
+}
+
+.keyboard-detail-button {
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	transform: translate3d(-50%, 0, 100px);
+	opacity: 0;
+	transition: 0.5s;
+}
+
+.keyboard-box:hover .keyboard-detail-button {
+	opacity: 1;
+	bottom: 20px;
+}
+
+.keyboard-img {
+	position: absolute;
+	top: 52%;
+	left: 50%;
+	transform: translate3d(-50%, -52%, 80px);
+	max-width: 300px;
+	transition: 0.5s;
+	opacity: 0.8;
+	background-color: #0c6efd;
+}
+
+.keyboard-box:hover .keyboard-img {
+	transform: translate3d(-50%, -52%, 100px) rotate (5deg) scale(1.2);
+}
