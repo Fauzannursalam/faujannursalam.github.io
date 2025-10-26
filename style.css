@@ -1,154 +1,114 @@
+/* style.css */
+
+/* 1. Perbaikan Umum & Padding Navbar */
+body {
+	/* Memberi ruang di atas agar konten tidak tertutup Navbar fixed-top */
+	padding-top: 56px;
+	/* Pastikan transisi untuk perpindahan dark mode mulus */
+	transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* --- PERBAIKAN: JUMBOTRON & TEMA WARNA --- */
 .jumbotron {
+	/* Mengatur padding di Jumbotron agar konten tidak terlalu menempel */
 	padding-top: 6rem;
-	background-color: #e2edff;
+	/* Mengambil warna latar belakang tema tersier (Light: abu-abu muda, Dark: abu-abu tua) */
+	background-color: var(--bs-tertiary-bg);
+}
+/* ------------------------------------------- */
+
+.jumbotron h1 {
+	font-weight: 700;
 }
 
-#projects {
-	background-color: #e2edff;
-}
-section {
-	padding-top: 6rem;
-}
-.gallery-img {
-	width: 100%;
-}
-#gallery .row > * {
-	padding: 0;
-}
-/* my card */
-
-/* 1. Menghilangkan Dekorasi Link pada Card */
-.card-link {
-	text-decoration: none; /* Menghilangkan garis bawah pada link */
-	color: inherit; /* Memastikan warna teks tetap sama */
-	display: block; /* Agar link menempati seluruh area col-md-4 */
-	height: 100%; /* Agar link membungkus seluruh tinggi kolom */
+#About h2 {
+	/* Menambah margin di atas judul "About Me" */
+	margin-top: 2rem;
 }
 
-/* 2. Menyamakan Ukuran Card */
-.card {
-	/* Menentukan tinggi minimum agar semua kartu terlihat konsisten, sesuaikan nilai ini */
-	min-height: 300px;
+#Projects {
+	/* Menambah padding yang besar di atas section Projects */
+	padding-top: 8rem;
+}
+/* 3. Styling Bagian Kontak (Contact) */
+#Contact {
+	padding-top: 5rem;
+	padding-bottom: 5rem;
+}
 
-	/* Transisi untuk efek zoom/hover yang halus */
-	transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+/* 4. Styling Kotak Skill Kustom (Keyboard Box) */
+.keyboard-box {
+	/* Agar Vanilla Tilt berfungsi dengan baik */
+	transform-style: preserve-3d;
 
-	/* Menggunakan flexbox untuk mengatur tinggi card-body */
+	/* Styling Visual Box, menggunakan warna latar belakang tema */
+	background-color: var(--bs-body-bg);
+	padding: 2rem;
+	border-radius: 10px;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+	text-align: center;
+	height: 100%; /* Agar semua kartu tingginya sama */
 	display: flex;
 	flex-direction: column;
-}
-
-/* Memastikan semua gambar memiliki tinggi yang sama */
-.card-img-top {
-	/* Tinggi gambar yang seragam, sesuaikan nilai ini jika perlu */
-	height: 200px;
-	/* Memastikan gambar mengisi area tanpa terdistorsi */
-	object-fit: cover;
-}
-
-/* Memastikan card-body menempati sisa ruang */
-.card-body {
-	flex-grow: 1; /* Memastikan card-body mengisi sisa ruang vertikal */
-	display: flex;
-	align-items: center; /* Teks di tengah vertikal */
-	justify-content: center; /* Teks di tengah horizontal (sudah ada class text-center) */
-}
-
-/* 3. Efek Zoom saat di-hover */
-.card:hover {
-	/* Memperbesar ukuran card sebesar 5% (1.05 kali) */
-	transform: scale(1.05);
-	/* Menambahkan bayangan untuk efek visual yang lebih menonjol */
-	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-	/* Menarik card ke lapisan atas agar tidak terpotong (penting jika ada elemen di sebelahnya) */
-	z-index: 10;
-}
-
-/* my keyboard section */
-
-.keyboard-box {
-	position: relative;
-	background-color: white;
-	border-radius: 10px;
-	height: 500px;
-	transform-style: preserve-3d;
-}
-
-.keyboard-box::before {
-	content: "MY";
-	position: absolute;
-	color: #ffff;
-	font-size: 6em;
-	font-weight: bold;
-	font-style: italic;
-	top: 30px;
-	left: 50%;
-	transform: translate(-50%, 0);
-	opacity: 0;
-	transition: 0.5s;
-}
-.keyboard-box:hover::before {
-	opacity: 0.2;
-}
-.keyboard-box::after {
-	content: "Skill";
-	position: absolute;
-	color: #ffff;
-	font-size: 4.3em;
-	font-weight: bold;
-	font-style: italic;
-	top: 350px;
-	left: 50%;
-	transform: translate(-50%, 0);
-	opacity: 0;
-	transition: 0.5s;
-}
-.keyboard-box:hover::after {
-	opacity: 0.2;
-}
-
-.keyboard-name {
-	position: absolute;
-	top: 0;
-	width: 100%;
-	color: #fff;
-	text-align: center;
-	font-size: 2em;
-	opacity: 0;
-	transform: translate3d(0, 0, 50px);
-	transition: 0.5s;
-}
-
-.keyboard-box:hover .keyboard-name {
-	top: 20px;
-	opacity: 1;
-}
-
-.keyboard-detail-button {
-	position: absolute;
-	bottom: 0;
-	left: 50%;
-	transform: translate3d(-50%, 0, 100px);
-	opacity: 0;
-	transition: 0.5s;
-}
-
-.keyboard-box:hover .keyboard-detail-button {
-	opacity: 1;
-	bottom: 20px;
+	justify-content: space-between;
 }
 
 .keyboard-img {
-	position: absolute;
-	top: 52%;
-	left: 50%;
-	transform: translate3d(-50%, -52%, 80px);
-	max-width: 300px;
-	transition: 0.5s;
-	opacity: 0.8;
-	background-color: #0c6efd;
+	max-width: 100%;
+	height: 150px; /* Atur tinggi gambar agar konsisten */
+	object-fit: contain; /* Memastikan gambar tidak terpotong */
+	margin-bottom: 1rem;
+	transition: transform 0.3s ease;
 }
 
 .keyboard-box:hover .keyboard-img {
-	transform: translate3d(-50%, -52%, 100px) rotate (5deg) scale(1.2);
+	transform: scale(1.05);
 }
+
+.keyboard-detail-button {
+	margin-top: auto; /* Memastikan tombol selalu di bawah */
+	width: 100%;
+	font-weight: 600;
+}
+
+.keyboard-name {
+	margin-top: 0;
+	margin-bottom: 1rem;
+	font-size: 1.25rem;
+	font-weight: 600;
+}
+
+/* 5. Styling Tombol Dark Mode */
+.mode-toggle {
+	/* Menghilangkan garis bawah/border bawaan link */
+	border: none;
+	background: none;
+	color: var(--bs-body-color); /* Mengikuti warna teks tema */
+	font-size: 1.5rem;
+}
+
+.mode-toggle:hover {
+	color: var(--bs-primary); /* Warna hover sesuai tema utama */
+}
+
+/* Override warna card di Dark Mode agar tidak terlalu gelap (optional) */
+.card {
+	background-color: var(--bs-body-bg);
+}
+
+/* --- PERBAIKAN: FOOTER --- */
+footer.bg-primary {
+	/* Menambahkan padding vertikal tambahan jika diperlukan */
+	padding-top: 1rem !important;
+}
+
+footer p {
+	/* Menghilangkan margin bawaan pada tag p (Bootstrap 5 memberi margin-bottom: 1rem) */
+	margin-bottom: 0 !important;
+}
+
+footer a {
+	/* Memastikan link di footer tetap bersih */
+	text-decoration: none;
+}
+/* -------------------------- */
