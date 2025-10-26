@@ -30,6 +30,23 @@ body {
 	/* Menambah padding yang besar di atas section Projects */
 	padding-top: 8rem;
 }
+#Projects .card {
+	/* ini adalah langkah krusial. Tanpa ini, ketika gambar diperbesar (`scale`), gambar akan meluap keluar dari batas *card* dan bisa terlihat tidak rapi. */
+	overflow: hidden;
+}
+
+#Projects .card-body {
+	min-height: 80px;
+}
+#Projects .card-img-top {
+	/* Properti `transition: transform 0.5s ease-in-out` memberitahu *browser* untuk menghabiskan waktu **0.5 detik** ketika terjadi perubahan pada properti `transform` (yaitu perubahan ukuran *scale*). Ini yang membuat efek zoom terlihat **halus (smooth)**, bukan tiba-tiba. */
+	transition: transform 0.5s ease-in-out;
+	transform: scale(1);
+}
+#Projects .card:hover .card-img-top {
+	/* Aturan ini mengatakan: "Ketika elemen `.card` di-*hover*, ubah ukuran gambar (`.card-img-top`) di dalamnya menjadi **110%** (`scale(1.1)`)." Karena gambar memiliki properti `transition`, perubahan ini akan berlangsung selama 0.5 detik. */
+	transform: scale(1.1);
+}
 /* 3. Styling Bagian Kontak (Contact) */
 #Contact {
 	padding-top: 5rem;
